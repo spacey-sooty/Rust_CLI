@@ -1,4 +1,4 @@
-name: Ubuntu Build
+name: Arch Build
 
 on:
   push:
