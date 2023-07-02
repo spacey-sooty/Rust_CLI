@@ -19,7 +19,7 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     Start(StartArgs),
-    New_Project(ProjectArgs),
+    NewProject(new_project::ProjectArgs),
 }
 
 #[derive(Args)]
@@ -40,7 +40,7 @@ async fn main() {
         Commands::Start(..) => {
             try_start().await.unwrap();
         }
-        Commands::New_Project(..) => {
+        Commands::NewProject(..) => {
             new_project::try_new_project().await.unwrap();
         }
     }
