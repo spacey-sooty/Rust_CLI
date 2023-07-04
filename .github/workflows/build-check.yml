@@ -1,4 +1,4 @@
-name: Windows Build
+name: Build
 
 on:
   push:
@@ -10,9 +10,9 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  Ubuntu-Build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -21,3 +21,12 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
 
+  Windows-Build:
+    runs-on: windows-latests
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
