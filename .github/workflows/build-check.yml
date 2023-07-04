@@ -22,7 +22,7 @@ jobs:
       run: cargo test --verbose
 
   Windows-Build:
-    runs-on: windows-latests
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
