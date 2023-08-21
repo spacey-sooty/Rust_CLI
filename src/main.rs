@@ -1,4 +1,5 @@
-use clap::{Args, Parser, Subcommand};
+use clap::{Parser, Subcommand};
+use cli::new_project;
 
 #[derive(Parser)]
 #[command(name = "Personal CLI")]
@@ -16,11 +17,8 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-  Project(ProjectArgs),
+  Project(new_project::ProjectArgs),
 }
-
-#[derive(Args)]
-struct ProjectArgs {}
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
@@ -29,8 +27,13 @@ async fn main() {
   let cli = Cli::parse();
   match &cli.command {
     Commands::Project(..) => {
-      println!("Starting new project");
-      todo!("Implement new project");
+      if std::env::consts::OS == "windows" {
+        println!("Starting new project, windows");
+        todo!("Implement new project");
+      } else {
+        println!("Starting new project, linux");
+        todo!("Implement new project");
+      }
     }
   }
 }
