@@ -1,47 +1,36 @@
 use clap::{Args, Parser, Subcommand};
-use cli::new_project;
-use tokio::io::Result;
 
 #[derive(Parser)]
-#[command(name = "CLI")]
+#[command(name = "Personal CLI")]
 #[command(author = "Isaac Turner")]
 #[command(version = "0.1")]
 #[command(
-    about = "",
-    long_about = ""
+  about = "My CLI tool",
+  long_about = "A CLI tool I built to do work that I want"
 )]
 
 struct Cli {
-    #[command(subcommand)]
-    command: Commands,
+  #[command(subcommand)]
+  command: Commands,
 }
 
 #[derive(Subcommand)]
 enum Commands {
-    Start(StartArgs),
-    NewProject(new_project::ProjectArgs),
+  Project(ProjectArgs),
 }
 
 #[derive(Args)]
-struct StartArgs {}
-
-async fn try_start() -> Result<()> {
-    println!("Hello World!");
-
-    Ok(())
-}
+struct ProjectArgs {}
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
-    println!("Platform: {}", std::env::consts::OS);
+  println!("Platform: {}", std::env::consts::OS);
 
-    let cli = Cli::parse();
-    match &cli.command {
-        Commands::Start(..) => {
-            try_start().await.unwrap();
-        }
-        Commands::NewProject(..) => {
-            new_project::try_new_project().await.unwrap();
-        }
+  let cli = Cli::parse();
+  match &cli.command {
+    Commands::Project(..) => {
+      println!("Starting new project");
+      todo!("Implement new project");
     }
+  }
 }
