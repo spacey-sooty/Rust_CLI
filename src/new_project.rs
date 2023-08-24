@@ -1,8 +1,8 @@
 use clap::{Args, Subcommand};
-use std::process::Command;
+use std::fs;
+use std::fs::File;
 
 #[derive(Args, Debug)]
-// #[derive(Debug, Parser)]
 pub struct ProjectArgs {
   #[command(subcommand)]
   pub lang: Langs,
@@ -18,18 +18,9 @@ pub enum Langs {
 
 pub fn rust_project(proj_name: &String) {
   println!("starting a new rust project, with name {}", proj_name);
-  if cfg!(target_os = "windows") {
-
-  } else {
-    todo!("linux implementation");
-  }
 }
 
 pub fn svelte_project(proj_name: &String) {
-    println!("starting a new svelte project, with name {}", proj_name);
-    if cfg!(target_os = "windows") {
-
-    } else {
-        todo!("linux implementation");
-    }
+  println!("starting a new svelte project, with name {}", proj_name);
+  fs::create_dir(&proj_name).unwrap();
 }
