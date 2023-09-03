@@ -22,11 +22,6 @@ pub fn rust_project(proj_name: &String) {
   fs::create_dir(proj_name).unwrap();
   fs::create_dir(format!("{}/.cargo", proj_name)).unwrap();
   Command::new("powershell")
-    .arg(format!(
-      "Copy-Item config.toml {}/.cargo/config.toml",
-      proj_name
-    ))
-    .arg(" | ")
     .arg(format!("cd {}", proj_name))
     .arg(" | ")
     .arg("cargo init")
