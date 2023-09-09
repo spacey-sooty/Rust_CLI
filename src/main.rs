@@ -1,4 +1,6 @@
-use clap::{Args, Parser, Subcommand};
+use clap::{Parser, Subcommand};
+use cli::new_project::ProjectArgs;
+use cli::new_project;
 
 #[derive(Parser)]
 #[command(name = "Personal CLI")]
@@ -6,7 +8,7 @@ use clap::{Args, Parser, Subcommand};
 #[command(version = "0.1")]
 #[command(
   about = "My CLI tool",
-  long_about = "A CLI tool I built to do work that I want"
+  long_about = "A CLI tool I built to perform tasks I commonly require",
 )]
 
 struct Cli {
@@ -16,11 +18,8 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-  Project(ProjectArgs),
+  New(ProjectArgs),
 }
-
-#[derive(Args)]
-struct ProjectArgs {}
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
@@ -28,9 +27,15 @@ async fn main() {
 
   let cli = Cli::parse();
   match &cli.command {
-    Commands::Project(..) => {
-      println!("Starting new project");
-      todo!("Implement new project");
+    Commands::New(project_args) => {
+        match &project_args.lang {
+            new_project::Langs::Rust => {
+                new_project::rust_project(&project_args.name, &project_args.origin);
+            }
+            new_project::Langs::Svelte => {
+                new_project::svelte_project(&project_args.name);
+            }
+        }
     }
   }
 }
