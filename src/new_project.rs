@@ -78,11 +78,11 @@ pub fn svelte_project(proj_name: &String) {
 }
 
 #[cfg(not(windows))]
-pub fn rust_project(proj_name: &String) {
+pub fn rust_project(proj_name: &String, origin: &String) {
   println!("starting a new rust project, with name {}", proj_name);
 }
 
 #[cfg(not(windows))]
-pub fn svelte_project(proj_name: &String) {
+pub fn svelte_project(proj_name: &String, origin: &String) {
   println!("starting a new svelte project, with name {}", proj_name);
 }
