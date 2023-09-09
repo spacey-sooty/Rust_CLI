@@ -30,7 +30,7 @@ async fn main() {
     Commands::New(project_args) => {
         match &project_args.lang {
             new_project::Langs::Rust => {
-                new_project::rust_project(&project_args.name);
+                new_project::rust_project(&project_args.name, &project_args.origin);
             }
             new_project::Langs::Svelte => {
                 new_project::svelte_project(&project_args.name);
