@@ -1,6 +1,6 @@
 use clap::{Parser, Subcommand};
-use cli::new_project::ProjectArgs;
 use cli::new_project;
+use cli::new_project::ProjectArgs;
 
 #[derive(Parser)]
 #[command(name = "Personal CLI")]
@@ -8,7 +8,7 @@ use cli::new_project;
 #[command(version = "0.1")]
 #[command(
   about = "My CLI tool",
-  long_about = "A CLI tool I built to perform tasks I commonly require",
+  long_about = "A CLI tool I built to perform tasks I commonly require"
 )]
 
 struct Cli {
@@ -27,15 +27,13 @@ async fn main() {
 
   let cli = Cli::parse();
   match &cli.command {
-    Commands::New(project_args) => {
-        match &project_args.lang {
-            new_project::Langs::Rust => {
-                new_project::rust_project(&project_args.name, &project_args.origin);
-            }
-            new_project::Langs::Svelte => {
-                new_project::svelte_project(&project_args.name);
-            }
-        }
-    }
+    Commands::New(project_args) => match &project_args.lang {
+      new_project::Langs::Rust => {
+        new_project::rust_project(&project_args.name, &project_args.origin);
+      }
+      new_project::Langs::Svelte => {
+        new_project::svelte_project(&project_args.name);
+      }
+    },
   }
 }

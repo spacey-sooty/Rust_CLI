@@ -27,27 +27,27 @@ pub fn rust_project(proj_name: &String, origin: &String) {
   fs::create_dir(proj_name).unwrap();
   fs::create_dir(format!("{}/.cargo", proj_name)).unwrap();
   fs::File::create(confpath)
-      .unwrap()
-      .write_all(b"[profile.release]\nlto=true\nstrip='debuginfo'\n")
-      .unwrap();
+    .unwrap()
+    .write_all(b"[profile.release]\nlto=true\nstrip='debuginfo'\n")
+    .unwrap();
   fs::create_dir(format!("{}/src", proj_name)).unwrap();
   fs::File::create(format!("{}/src/lib.rs", proj_name)).unwrap();
   fs::File::create(format!("{}/src/main.rs", proj_name))
-      .unwrap()
-      .write_all(b"fn main() {}")
-      .unwrap();
+    .unwrap()
+    .write_all(b"fn main() {}")
+    .unwrap();
   fs::File::create(format!("{}/build.rs", proj_name))
-      .unwrap()
-      .write_all(b"fn main() {}")
-      .unwrap();
+    .unwrap()
+    .write_all(b"fn main() {}")
+    .unwrap();
   fs::File::create(format!("{}/src/tests.rs", proj_name))
-      .unwrap()
-      .write_all(b"#[cfg(test)]\nmod tests{}\n")
-      .unwrap();
+    .unwrap()
+    .write_all(b"#[cfg(test)]\nmod tests{}\n")
+    .unwrap();
   fs::File::create(format!("{}/.gitignore", proj_name))
-      .unwrap()
-      .write_all(b"/target\nCargo.lock\n*.exe\n*.out\n")
-      .unwrap();
+    .unwrap()
+    .write_all(b"/target\nCargo.lock\n*.exe\n*.out\n")
+    .unwrap();
   fs::create_dir(format!("{}/.github", proj_name)).unwrap();
   fs::File::create(format!("{}/.github/dependabot.yml", proj_name))
       .unwrap()
