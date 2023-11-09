@@ -4,5 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-tokio = { version = "1.33", features = ["rt", "macros"] }
+tokio = { version = "1.34", features = ["rt", "macros"] }
 clap = { version = "4.4.7", features = ["derive"] }
